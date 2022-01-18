@@ -6,6 +6,8 @@ import { Box } from "@mui/system";
 
 export default function Calculator() {
   const [num, setNum] = useState(0);
+  const [oldNum, setoldNum] = useState(0);
+  const [operator, setOperator] = useState();
 
   function inputNum(e) {
     if (num === 0) {
@@ -26,14 +28,30 @@ export default function Calculator() {
   function changeSign() {
     if (num > 0) {
       setNum(-num);
-    }else{
+    } else {
       setNum(Math.abs(num));
     }
   }
 
-  function calculate(){
-
+  function operatorHandler(e) {
+    let operatorInput = e.target.value;
+    setOperator(operatorInput);
+    setoldNum(num);
+    setNum(0);
   }
+
+  function calculate() {
+    if (operator === "÷") {
+      setNum(oldNum / num);
+    } else if (operator === "x") {
+      setNum(oldNum * num);
+    } else if (operator === "-") {
+      setNum(oldNum - num);
+    } else if (operator === "+") {
+      setNum(parseFloat(oldNum) + parseFloat(num));
+    }
+  }
+
   return (
     <div>
       <Box m={6} />
@@ -50,7 +68,9 @@ export default function Calculator() {
           <button className="" onClick={porcentage}>
             %
           </button>
-          <button className="orange">÷</button>
+          <button className="orange" onClick={operatorHandler} value={"÷"}>
+            ÷
+          </button>
           <button className="gray" onClick={inputNum} value={7}>
             7
           </button>
@@ -60,7 +80,9 @@ export default function Calculator() {
           <button className="gray" onClick={inputNum} value={9}>
             9
           </button>
-          <button className="orange">x</button>
+          <button className="orange" onClick={operatorHandler} value={"x"}>
+            x
+          </button>
           <button className="gray" onClick={inputNum} value={4}>
             4
           </button>
@@ -70,7 +92,9 @@ export default function Calculator() {
           <button className="gray" onClick={inputNum} value={6}>
             6
           </button>
-          <button className="orange">-</button>
+          <button className="orange" onClick={operatorHandler} value={"-"}>
+            -
+          </button>
           <button className="gray" onClick={inputNum} value={1}>
             1
           </button>
@@ -80,15 +104,21 @@ export default function Calculator() {
           <button className="gray" onClick={inputNum} value={3}>
             3
           </button>
-          <button className="orange">+</button>
+          <button className="orange" onClick={operatorHandler} value={"+"}>
+            +
+          </button>
           <button className="gray" onClick={inputNum} value={0}>
             0
           </button>
-          <button className="gray"onClick={inputNum} value={"."}>,</button>
+          <button className="gray" onClick={inputNum} value={"."}>
+            ,
+          </button>
           <button className="gray" style={{ visibility: "hidden" }}>
             ,
           </button>
-          <button className="orange"onClick={calculate}>=</button>
+          <button className="orange" onClick={calculate}>
+            =
+          </button>
         </div>
       </Container>
     </div>
