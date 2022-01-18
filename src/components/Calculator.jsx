@@ -57,7 +57,7 @@ export default function Calculator() {
       <Box m={6} />
       <Container maxWidth="xs">
         <div className="wrapper">
-          <Box m={12} />
+          <Box m={10} />
           <h1 className="result">{num}</h1>
           <button className="" onClick={clear}>
             AC
