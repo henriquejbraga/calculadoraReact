@@ -1,5 +1,6 @@
 https://calculadorareacthenrique.netlify.app/
 
+Calculadora com design parecido do aplicativo Apple. Feito através de JavaScript e CSS, para fins de aprendizado
 
 # Getting Started with Create React App
 
